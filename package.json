@@ -1,0 +1,79 @@
+{
+  "name": "koa2-es-starter",
+  "version": "0.1.0",
+  "private": false,
+  "scripts": {
+    "start": "cross-env NODE_ENV=development DEBUG=koa* nodemon --exec 'babel-node --inspect=0.0.0.0 src/bin/www.js",
+    "prd": "pm2 start dist/bin/www.js",
+    "build": "cross-env NODE_ENV=production babel ./src --out-dir dist --source-maps inline --copy-files",
+    "prebuild": "rimraf dist",
+    "prepublishOnly": "npm run build",
+    "babel-node": "babel-node",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.js\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "rootDir": "src",
+    "testEnvironment": "node",
+    "testRegex": ".spec.js$",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{ts,js}",
+      "!**/node_modules/**",
+      "!**/public/**",
+      "!**/dist/**",
+      "!**/coverage/**"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "text-summary"
+    ]
+  },
+  "dependencies": {
+    "config": "^3.3.3",
+    "cross-env": "^7.0.3",
+    "crypto": "^1.0.1",
+    "debug": "^4.1.1",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-convert": "^1.2.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.0",
+    "koa-onerror": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.2.0",
+    "moment": "^2.29.1",
+    "pino": "^6.8.0",
+    "pino-pretty": "^4.3.0",
+    "pug": "^2.0.3",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@shelf/jest-mongodb": "^1.2.3",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "^26.6.3",
+    "jest-websocket-mock": "^2.2.0",
+    "nodemon": "^1.19.1"
+  }
+}
